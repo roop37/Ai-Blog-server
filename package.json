@@ -1,0 +1,11 @@
+{
+  "name": "blog",
+  "version": "0.0.1",
+  "description": "THe Server COde for the AI Blog Website",
+  "main": "server.js",
+  "author": "Sanbedan Paul",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
