@@ -1,25 +1,20 @@
-// server.js
-
-// load http module
-const http = require("http");
-
-// load third party Express module
 const express = require("express");
+const bodyParser = require("body-parser");
+const userRoutes = require("./routes/userRoutes");
+const blogPostRoutes = require("./routes/blogPostRoutes");
+const commentRoutes = require("./routes/commentRoutes");
+const connectDB = require("./utils/db");
+require("dotenv").config();
+
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-// define the routes
-app.get("/", (req, res) => {
-  res.send("Hello, this is my home Page");
-});
+connectDB();
 
-app.get("/about", (req, res) => {
-  res.send("Hello, this is my about Page");
-});
+app.use(bodyParser.json());
 
-// create the server
-const server = http.createServer(app);
+app.use("/users", userRoutes);
+app.use("/blogposts", blogPostRoutes);
+app.use("/comments", commentRoutes);
 
-// server listen for any incoming requests
-server.listen(4000);
-
-console.log("My node.js web server is alive and running at port 3000");
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
